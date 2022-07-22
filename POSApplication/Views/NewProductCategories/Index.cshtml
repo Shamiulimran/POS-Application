@@ -1,0 +1,57 @@
+﻿@model IEnumerable<POSApplication.Models.NewProductCategory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "NewProductCategories", FormMethod.Post))
+{
+    <div class="pull-right " style="padding:6px">
+        <input type="text" id="SearchValue" placeholder="search.." name="SearchValue" />
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </div>
+}
+<table id="datatable" class="table table-responsive table-bordered datatable-show-all ppp ">
+    <tr class="bg-blue">
+        @*<th class="col-sm-1" >
+            @Html.Label("SL No")
+        </th>*@
+        <th class="col-sm-1">
+            SL No
+        </th>
+        <th>
+            Category Name
+        </th>
+        
+        <th class="col-sm-2">
+          Action
+        </th>
+    </tr>
+    @{int index = 1;}
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @index
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ImageUrl)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+    index++;
+}
+
+</table>

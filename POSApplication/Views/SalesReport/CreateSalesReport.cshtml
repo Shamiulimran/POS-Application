@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "CreateSalesReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="panel panel-primary panel-bordered">
+    <div class="panel-heading">
+        <h5 class="panel-title"> Create Sales Report Information</h5>
+    </div>
+    <div class="panel-body">
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @*<h4>ExpenseType</h4>
+                    <hr />*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.ExpenseType1, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.Label("Date From", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.TextBox("DateFrom", "", new { @class = "form-control Datepicker", @id = "DateFrom" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.ExpenseType1, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.Label("Date To", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.TextBox("DateTo", "", new { @class = "form-control Datepicker", @id = "DateTo" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.ExpenseType1, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.Label("Product Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.DropDownList("ProductCategoryId", null, "--All--", new { @class = "form-control select2" })
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+
+                        <input type="submit" value="Generate Pdf" class="btn btn-success" formaction="/SalesReport/CreateSalesReport/" formmethod="post" />
+                        <input type="submit" value="Generate Summary" class="btn btn-warning" formaction="/SalesReport/SummarySalessReport/" formmethod="post" />
+                   
+                     </div>
+                </div>
+            </div>
+        }
+
+        @*<div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+
+    </div> <!-- panel body -->
+</div>
+
+@*<link href="~/Content/plugins/datepicker/datepicker3.css" rel="stylesheet" />
+    <script src="~/Content/plugins/datepicker/bootstrap-datepicker.js"></script>*@
+<script type="text/javascript">
+
+$('document').ready(function ()
+        {
+            $('.Datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                todayHighlight: true,
+                todayBtn: true,
+                autoclose: true
+            });
+
+            $(".select2").select2();
+
+});
+</script>

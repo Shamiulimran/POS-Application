@@ -1,0 +1,79 @@
+﻿@model IEnumerable<POSApplication.Models.NewSupplier>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New Suppler", "Create", "NewSupplierCon")
+</p>
+<h3 style="text-align:center ;background-color:red">
+    @ViewBag.Message
+</h3>
+@using (Html.BeginForm("Index", "NewSupplierCon", FormMethod.Post))
+{
+    <div class="pull-right" style="padding:6px">
+        <input type="text" id="searchvalue" placeholder="search.." name="searchvalue" value="@ViewBag.searchvalue"/>
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </div>
+}
+<table class="table">
+    <tr>
+
+        <th>
+            SL No.
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </th>
+        <th></th>
+    </tr>
+    @{ int Index = 1;}
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Index
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Detais", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+    Index++;
+}
+
+</table>
+<script>
+
+</script>

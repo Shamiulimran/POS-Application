@@ -1,0 +1,78 @@
+﻿@model IEnumerable <POSApplication.Models.Helpers.NewProductHelper>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New ProductInfo", "Create")
+</p>
+@using (Html.BeginForm("Index", "NewProductInfo", FormMethod.Post))
+
+{
+    <div class="pull-right"style="padding:6px">
+        <input type="text"  id="searchValue1" placeholder="Search.." name="searchValue1">
+        <button type="submit"><i class="fa fa-search "></i></button>
+    </div>
+
+}
+
+<table class="table table-bordered table table-success">
+    <tr>
+        <th>
+            SL No
+        </th>
+        @*<th>
+            Product Code
+        </th>*@
+        <th>
+          Product Name
+        </th>
+        <th>
+            Product Categorey
+        </th>
+        <th>
+            Supplier Name
+        </th>
+        <th>
+            Supplier Phone
+        </th>
+        <th >
+            Action
+        </th>
+    </tr>
+    @{ int index = 1;}
+@foreach (var item in  Model)
+{
+    <tr >
+        <td>
+             @index
+        </td>
+        @*<td>
+            @item.ProductCode
+        </td>*@
+        <td>
+            @item.ProductName
+        </td>
+        <td>
+         @item.ProductCategorey
+        </td>
+        <td>
+            @item.SupplierName
+        </td>
+        <td>
+            @item.SupplierPhone
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+    index++;
+}
+
+</table>
